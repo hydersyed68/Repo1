@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hearthstone Bakery</title>
+    <style>
+        /* General Styles */
+        :root {
+            --primary-color: #a15a3c; /* Warm, earthy brown */
+            --secondary-color: #f8e9d8; /* Creamy off-white */
+            --accent-color: #d98b5f; /* Lighter, peachy tone */
+            --dark-text: #333;
+            --light-text: #fff;
+            --font-display: 'Georgia', serif;
+            --font-body: 'Arial', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font-body);
+            color: var(--dark-text);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            background-color: var(--secondary-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-display);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: var(--primary-color);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: var(--dark-text);
+            margin-top: 60px;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            color: var(--primary-color);
+            margin-top: 30px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--light-text);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--light-text);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 1.1em;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1920x1080/f8e9d8/a15a3c?text=Warm+Bread+Texture') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--light-text);
+            position: relative;
+        }
+
+        #hero h1 {
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            color: var(--light-text);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        #hero p {
+            font-size: 1.5em;
+            font-style: italic;
+            max-width: 700px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        /* About Section */
+        #about {
+            background-color: var(--secondary-color);
+            text-align: center;
+        }
+
+        #about h2 {
+            margin-top: 0;
+        }
+
+        #about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2em;
+        }
+
+        /* Products Section */
+        #products {
+            background-color: #fff; /* White background for products */
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .product-item {
+            text-align: center;
+            background-color: var(--secondary-color);
+            padding: 25px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .product-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .product-item img {
+            width: 100%;
+            height: 250px; /* Fixed height for consistent images */
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .product-item h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .product-item p {
+            font-size: 1.1em;
+        }
+
+        /* Custom Cakes Section */
+        #custom-cakes {
+            background-color: var(--secondary-color);
+            text-align: center;
+        }
+
+        #custom-cakes img {
+            max-width: 600px;
+            margin: 40px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        #custom-cakes p {
+            font-size: 1.2em;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+        }
+
+        #contact h2 {
+            color: var(--light-text);
+        }
+
+        .contact-info {
+            font-size: 1.3em;
+            margin-top: 30px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+        }
+
+        .contact-info a {
+            color: var(--light-text);
+            font-weight: bold;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-text);
+            color: var(--secondary-color);
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9em;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8em;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            h3 {
+                font-size: 1.5em;
+            }
+
+            #hero h1 {
+                font-size: 3em;
+            }
+
+            #hero p {
+                font-size: 1.2em;
+            }
+
+            nav .container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 5px 15px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-item img {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.2em;
+            }
+
+            h2 {
+                font-size: 1.8em;
+            }
+
+            h3 {
+                font-size: 1.3em;
+            }
+
+            #hero h1 {
+                font-size: 2.5em;
+            }
+
+            #hero p {
+                font-size: 1em;
+            }
+
+            nav ul li {
+                margin: 5px 10px;
+                font-size: 1em;
+            }
+
+            section {
+                padding: 50px 0;
+            }
+
+            .contact-info {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="container">
+                <div class="logo">The Hearthstone Bakery</div>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#products">Our Breads</a></li>
+                    <li><a href="#custom-cakes">Custom Cakes</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section id="hero">
+            <div class="container">
+                <h1>Crafted with Passion, Baked with Love.</h1>
+                <p>Discover the rich aroma and exquisite taste of our handcrafted sourdough, delicate pastries, and bespoke celebration cakes.</p>
+            </div>
+        </section>
+    </header>
+
+    <main>
+        <section id="about">
+            <div class="container">
+                <h2>Our Story</h2>
+                <p>Welcome to The Hearthstone Bakery, where tradition meets innovation. We are passionate artisans dedicated to creating exceptional sourdough bread using time-honored fermentation techniques. From our ovens to your table, each loaf is a testament to quality ingredients, patient craftsmanship, and a deep love for the art of baking.</p>
+                <p>Beyond our signature sourdough, we offer a delightful array of flaky pastries and show-stopping custom cakes, perfect for any occasion. We believe in the simple joy of delicious, honest food, baked fresh every day.</p>
+            </div>
+        </section>
+
+        <section id="products">
+            <div class="container">
+                <h2>Our Artisan Breads & Pastries</h2>
+                <div class="product-grid">
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/300x250/f8e9d8/a15a3c?text=Classic+Sourdough" alt="Classic Sourdough Bread">
+                        <h3>Classic Sourdough</h3>
+                        <p>Our signature naturally leavened sourdough, with a crisp crust and airy, tangy crumb.</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/300x250/f8e9d8/a15a3c?text=Rustic+Baguette" alt="Rustic Baguette">
+                        <h3>Rustic Baguette</h3>
+                        <p>A perfectly crisp baguette, ideal for sandwiches or enjoying with your favorite spread.</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/300x250/f8e9d8/a15a3c?text=Almond+Croissant" alt="Almond Croissant">
+                        <h3>Almond Croissant</h3>
+                        <p>Flaky, buttery croissant filled with sweet almond paste and topped with toasted almonds.</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/300x250/f8e9d8/a15a3c?text=Chocolate+Danish" alt="Chocolate Danish">
+                        <h3>Chocolate Danish</h3>
+                        <p>Rich, dark chocolate nestled in layers of delicate pastry.</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/300x250/f8e9d8/a15a3c?text=Olive+Focaccia" alt="Olive Focaccia">
+                        <h3>Olive Focaccia</h3>
+                        <p>Aromatic focaccia studded with Kalamata olives and fresh rosemary.</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/300x250/f8e9d8/a15a3c?text=Seasonal+Pastry" alt="Seasonal Pastry">
+                        <h3>Seasonal Fruit Tart</h3>
+                        <p>Featuring the freshest fruits of the season in a delicate pastry shell.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="custom-cakes">
+            <div class="container">
+                <h2>Bespoke Celebration Cakes</h2>
+                <img src="https://via.placeholder.com/600x400/f8e9d8/a15a3c?text=Beautiful+Celebration+Cake" alt="Custom Celebration Cake Example">
+                <p>Make your special moments unforgettable with a custom-designed cake from The Hearthstone Bakery. From birthdays and anniversaries to weddings and corporate events, we craft edible art that tastes as incredible as it looks. Let's discuss your vision!</p>
+                <p>Contact us to start designing your dream cake.</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Get in Touch</h2>
+                <div class="contact-info">
+                    <p><strong>Phone:</strong> <a href="tel:+1234567890">(123) 456-7890</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:info@hearthstonebakery.com">info@hearthstonebakery.com</a></p>
+                    <p><strong>Visit Us:</strong> 123 Flour Lane, Bakeville, CA 90210</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 The Hearthstone Bakery. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
